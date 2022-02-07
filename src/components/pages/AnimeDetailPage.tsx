@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useMediaQuery } from "./__generated__/AnimeDetail.types";
 import ErrorPage from "next/error";
-import styles from "../../../styles/Loader.module.css";
 import DetailHeader from "../anime-detail/DetailHeader";
+import Loader from "../Loader";
 
 const AnimeDetailPage = () => {
   const router = useRouter();
@@ -16,7 +16,7 @@ const AnimeDetailPage = () => {
   return (
     <>
       {error && <ErrorPage statusCode={500} title={error.message} />}
-      {loading && <div className={styles.loader} />}
+      {loading && <Loader />}
       {data && (
         <div>
           <DetailHeader anime={data} />

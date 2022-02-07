@@ -38,7 +38,7 @@ const useAnimeList = ({ animes }: Props) => {
     []
   );
 
-  return { onPageChange, animeList, defaultPage };
+  return { onPageChange, animeList, defaultPage, loading };
 };
 
 export default useAnimeList;

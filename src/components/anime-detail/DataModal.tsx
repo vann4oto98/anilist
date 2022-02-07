@@ -1,38 +1,50 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { IFullAnimeDetailQuery } from "../pages/__generated__/FullDetail.types";
-import modalStyles from "../../../styles/Modal.module.css";
 import loaderStyles from "../../../styles/Loader.module.css";
 import dynamic from "next/dynamic";
+import { Modal, Box, Backdrop, Fade, CircularProgress } from "@mui/material";
+import Loader from "../Loader";
 const DynamicReactJson = dynamic(import("react-json-view"), { ssr: false });
 
 type Props = {
   loading: boolean;
-  setShowModal: (val: boolean) => void;
+  openModal: boolean;
+  setOpenModal: (val: boolean) => void;
   data: IFullAnimeDetailQuery | undefined;
 };
 
-const DataModal = ({ loading, data, setShowModal }: Props) => {
-  console.log(loading, data);
-  useEffect(() => {
-    const cb = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setShowModal(false);
-      }
-    };
-    document.addEventListener("keydown", cb);
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "80vw",
+  height: "80vh",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  overflow: "scroll",
+  padding: "1rem",
+};
 
-    return () => document.removeEventListener("keydown", cb);
-  }, []);
-
+const DataModal = ({ loading, data, openModal, setOpenModal }: Props) => {
   return (
-    <div className={modalStyles.modal}>
-      <div className={modalStyles.modalContent}>
-        <div className={modalStyles.modalBody}>
-          {loading && <div className={loaderStyles.loader} />}
+    <Modal
+      open={openModal}
+      onClose={() => setOpenModal(false)}
+      closeAfterTransition
+      BackdropComponent={Backdrop}
+      BackdropProps={{
+        timeout: 500,
+      }}
+    >
+      <Fade in={openModal}>
+        <Box sx={style}>
+          {loading && <Loader />}
           {data && <DynamicReactJson src={data.Media!} />}
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Fade>
+    </Modal>
   );
 };
 

@@ -9,8 +9,7 @@ import DataModal from "./DataModal";
 
 const DetailHeader = ({ anime }: { anime: IMediaQuery }) => {
   const { title, bannerImage, description, coverImage } = anime.Media!;
-
-  const [showModal, setShowModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const [loadAllData, { loading, data }] = useFullAnimeDetailLazyQuery({
     variables: { id: anime.Media?.id },
   });
@@ -22,8 +21,7 @@ const DetailHeader = ({ anime }: { anime: IMediaQuery }) => {
       <div className={styles.content}>
         <div
           onClick={() => {
-            setShowModal(false);
-            setShowModal(true);
+            setOpenModal(true);
             loadAllData();
           }}
           className={imgStyles.imgWrap}
@@ -44,9 +42,12 @@ const DetailHeader = ({ anime }: { anime: IMediaQuery }) => {
           {ReactHtmlParser(description)}
         </span>
       </div>
-      {showModal && (
-        <DataModal loading={loading} data={data} setShowModal={setShowModal} />
-      )}
+      <DataModal
+        loading={loading}
+        data={data}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      />
     </div>
   );
 };
