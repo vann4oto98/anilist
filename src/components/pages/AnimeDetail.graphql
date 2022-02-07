@@ -4,6 +4,7 @@ query media($id: Int) {
     title {
       romaji
       english
+      native
     }
     coverImage {
       large

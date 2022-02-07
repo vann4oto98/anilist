@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { IMediaQuery } from "../pages/__generated__/AnimeDetail.types";
-import styles from "../../../styles/AnimeDetail.module.css";
-import imgStyles from "../../../styles/Anime.module.css";
 //@ts-ignore
 import ReactHtmlParser from "react-html-parser";
 import { useFullAnimeDetailLazyQuery } from "../pages/__generated__/FullDetail.types";
 import DataModal from "./DataModal";
+import { Grid, Typography, Box } from "@mui/material";
 
 const DetailHeader = ({ anime }: { anime: IMediaQuery }) => {
   const { title, bannerImage, description, coverImage } = anime.Media!;
@@ -15,40 +14,42 @@ const DetailHeader = ({ anime }: { anime: IMediaQuery }) => {
   });
 
   return (
-    <div>
-      <img className={styles.banner} src={bannerImage ?? ""} alt="banner" />
-      <h1>{title?.english ?? title?.romaji}</h1>
-      <div className={styles.content}>
-        <div
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <img style={{ width: "100%" }} src={bannerImage ?? ""} alt="banner" />
+      </Grid>
+      <Grid item xs={12}>
+        <Box
+          sx={{ padding: "1rem", display: "flex", justifyContent: "center" }}
+        >
+          <Typography component="h1" variant="h3">
+            {`${title?.english ?? title?.romaji} | ${title?.native}`}
+          </Typography>
+        </Box>
+      </Grid>
+      <Grid item xs={12} md={4}>
+        <img
+          style={{ cursor: "pointer" }}
           onClick={() => {
             setOpenModal(true);
             loadAllData();
           }}
-          className={imgStyles.imgWrap}
-          style={{ cursor: "pointer" }}
-        >
-          <img
-            className={styles.cover}
-            src={coverImage?.large ?? ""}
-            alt="cover"
-          />
-          <div className={imgStyles.imgDescriptionLayer}>
-            <p className={imgStyles.imgDescription}>
-              Open Details (Lazy Query) &rarr;
-            </p>
-          </div>
-        </div>
-        <span className={styles.description}>
+          src={coverImage?.large ?? ""}
+          alt="cover"
+        />
+      </Grid>
+      <Grid item xs={12} md={8}>
+        <Typography component="span" variant="body2">
           {ReactHtmlParser(description)}
-        </span>
-      </div>
+        </Typography>
+      </Grid>
       <DataModal
         loading={loading}
         data={data}
         openModal={openModal}
         setOpenModal={setOpenModal}
       />
-    </div>
+    </Grid>
   );
 };
 

@@ -1,8 +1,7 @@
 import React from "react";
 import { IFullAnimeDetailQuery } from "../pages/__generated__/FullDetail.types";
-import loaderStyles from "../../../styles/Loader.module.css";
 import dynamic from "next/dynamic";
-import { Modal, Box, Backdrop, Fade, CircularProgress } from "@mui/material";
+import { Modal, Box, Backdrop, Fade } from "@mui/material";
 import Loader from "../Loader";
 const DynamicReactJson = dynamic(import("react-json-view"), { ssr: false });
 

@@ -8,10 +8,10 @@ type Props = {
 
 const Home = ({ animes }: Props) => {
   return (
-    <div>
+    <>
       <Header />
       <AnimeList animes={animes} />
-    </div>
+    </>
   );
 };
 

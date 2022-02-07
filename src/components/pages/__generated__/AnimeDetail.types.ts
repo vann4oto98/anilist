@@ -8,7 +8,7 @@ export type IMediaQueryVariables = Types.Exact<{
 }>;
 
 
-export type IMediaQuery = { __typename?: 'Query', Media?: { __typename?: 'Media', id: number, bannerImage?: string | null, description?: string | null, title?: { __typename?: 'MediaTitle', romaji?: string | null, english?: string | null } | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null } | null };
+export type IMediaQuery = { __typename?: 'Query', Media?: { __typename?: 'Media', id: number, bannerImage?: string | null, description?: string | null, title?: { __typename?: 'MediaTitle', romaji?: string | null, english?: string | null, native?: string | null } | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null } | null };
 
 
 export const MediaDocument = gql`
@@ -18,6 +18,7 @@ export const MediaDocument = gql`
     title {
       romaji
       english
+      native
     }
     coverImage {
       large

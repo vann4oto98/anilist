@@ -32,7 +32,7 @@ const useAnimeList = ({ animes }: Props) => {
 
   const onPageChange = useCallback(
     (event: React.ChangeEvent<unknown>, page: number) => {
-      router.push(`/?page=${page}`, undefined, { shallow: true });
+      router.push(`?page=${page}`, undefined, { shallow: true });
       getAnimes({ variables: { page, perPage: 12 } });
     },
     []
