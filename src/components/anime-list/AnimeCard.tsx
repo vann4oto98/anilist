@@ -4,6 +4,8 @@ import {
   CardMedia,
   CardContent,
   Typography,
+  Rating,
+  CardActions,
 } from "@mui/material";
 import Link from "next/link";
 import { IAnimeCard } from "../../helpers/types";
@@ -14,7 +16,7 @@ type Props = {
 };
 
 const AnimeCard = ({ anime }: Props) => {
-  const { id, coverImage, title, description } = anime;
+  const { id, coverImage, title, description, meanScore } = anime;
   return (
     <Link href="/anime/[id]" as={`/anime/${id}`}>
       <Card sx={{ width: "460px", height: "320px" }}>
@@ -23,6 +25,7 @@ const AnimeCard = ({ anime }: Props) => {
             display: "flex",
             justifyContent: "start",
             alignItems: "flex-start",
+            height: "100%",
           }}
         >
           <CardMedia
@@ -36,7 +39,18 @@ const AnimeCard = ({ anime }: Props) => {
             alt={title.english ?? title.romaji}
           />
           <CardContent sx={{ display: "inline-block", flexWrap: "wrap" }}>
-            <Typography gutterBottom variant="h5" component="span">
+            <Typography
+              sx={{
+                display: "-webkit-box",
+                WebkitLineClamp: "3",
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+              gutterBottom
+              variant="h5"
+              component="span"
+            >
               {title.english ?? title.romaji}
             </Typography>
             <Typography
@@ -45,14 +59,25 @@ const AnimeCard = ({ anime }: Props) => {
               component="p"
               sx={{
                 display: "-webkit-box",
-                "-webkit-line-clamp": "7",
-                "-webkit-box-orient": "vertical",
+                WebkitLineClamp: "5",
+                WebkitBoxOrient: "vertical",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
               }}
             >
               {ReactHtmlParser(description)}
             </Typography>
+            <CardActions
+              sx={{
+                position: "absolute",
+                flexDirection: "column",
+                alignItems: "baseline",
+                bottom: "1px",
+              }}
+            >
+              <Typography component="legend">User rating</Typography>
+              <Rating name="User Rating" value={meanScore / 20} readOnly />
+            </CardActions>
           </CardContent>
         </CardActionArea>
       </Card>

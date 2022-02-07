@@ -9,7 +9,7 @@ export type IGetAnimesQueryVariables = Types.Exact<{
 }>;
 
 
-export type IGetAnimesQuery = { __typename?: 'Query', Page?: { __typename?: 'Page', media?: Array<{ __typename?: 'Media', id: number, description?: string | null, title?: { __typename?: 'MediaTitle', english?: string | null, romaji?: string | null } | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null } | null> | null } | null };
+export type IGetAnimesQuery = { __typename?: 'Query', Page?: { __typename?: 'Page', media?: Array<{ __typename?: 'Media', id: number, description?: string | null, meanScore?: number | null, title?: { __typename?: 'MediaTitle', english?: string | null, romaji?: string | null } | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null } | null> | null } | null };
 
 
 export const GetAnimesDocument = gql`
@@ -25,6 +25,7 @@ export const GetAnimesDocument = gql`
         large
       }
       description
+      meanScore
     }
   }
 }

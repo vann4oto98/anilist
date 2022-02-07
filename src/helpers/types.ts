@@ -8,4 +8,5 @@ export interface IAnimeCard {
         large: string
     }
     description: string
+    meanScore: number
 }

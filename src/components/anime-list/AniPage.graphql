@@ -10,6 +10,7 @@ query GetAnimes($page: Int, $perPage: Int) {
         large
       }
       description
+      meanScore
     }
   }
 }
