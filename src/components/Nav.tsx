@@ -1,29 +1,21 @@
 import Link from "next/link";
-import styles from "../../styles/Nav.module.css";
+import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 
 const Nav = () => {
   return (
-    <nav className={styles.nav}>
-      <ul
-        style={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}
-      >
-        <li>
-          <Link href="/">Home</Link>
-        </li>
-        <li>
-          <Link href="/">
-            <h1 style={{ cursor: "pointer" }}>
-              <span className={styles.title}>Ani</span>List
-            </h1>
-          </Link>
-        </li>
-      </ul>
-    </nav>
+    <AppBar sx={{ background: "black", position: "sticky" }}>
+      <Toolbar>
+        <Link href="/">
+          <Button sx={{ color: "white" }}>HOME</Button>
+        </Link>
+        <Link href="/">
+          <Button sx={{ marginLeft: "auto" }}>
+            <Typography sx={{ color: "#0070f3" }}>Ani</Typography>
+            <Typography sx={{ color: "white" }}>List</Typography>
+          </Button>
+        </Link>
+      </Toolbar>
+    </AppBar>
   );
 };
 
