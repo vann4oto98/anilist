@@ -9,7 +9,7 @@ type Props = {
 };
 
 const AniList = ({ animes }: Props) => {
-  const { animeList, onPageChange } = useAnimeList({ animes });
+  const { animeList, onPageChange, defaultPage } = useAnimeList({ animes });
 
   return (
     <>
@@ -32,8 +32,9 @@ const AniList = ({ animes }: Props) => {
           justifyContent: "center",
           padding: "1rem",
         }}
+        defaultPage={defaultPage}
         onChange={onPageChange}
-        count={10}
+        count={200}
         shape="rounded"
       />
     </>

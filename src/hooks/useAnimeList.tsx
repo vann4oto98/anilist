@@ -1,4 +1,5 @@
-import React, { useState, useMemo, useCallback } from "react";
+import { useRouter } from "next/router";
+import React, { useMemo, useCallback } from "react";
 import { useGetAnimesLazyQuery } from "../components/anime-list/__generated__/AniPage.types";
 import { IAnimeCard } from "../helpers/types";
 
@@ -7,9 +8,14 @@ type Props = {
 };
 
 const useAnimeList = ({ animes }: Props) => {
+  const router = useRouter();
+  const defaultPage = useMemo(() => {
+    const page = Number(router.query?.page);
+    return page ?? 1;
+  }, []);
   const [getAnimes, { loading, data }] = useGetAnimesLazyQuery({
     variables: {
-      page: 1,
+      page: defaultPage,
       perPage: 12,
     },
   });
@@ -26,12 +32,13 @@ const useAnimeList = ({ animes }: Props) => {
 
   const onPageChange = useCallback(
     (event: React.ChangeEvent<unknown>, page: number) => {
+      router.push(`/?page=${page}`, undefined, { shallow: true });
       getAnimes({ variables: { page, perPage: 12 } });
     },
     []
   );
 
-  return { onPageChange, animeList };
+  return { onPageChange, animeList, defaultPage };
 };
 
 export default useAnimeList;

@@ -15,11 +15,12 @@ type Props = {
 
 const Index: NextPage<Props> = ({ animes }) => <HomePage animes={animes} />;
 
-Index.getInitialProps = async () => {
+Index.getInitialProps = async ({ query }) => {
+  const page = Number(query?.page);
   const getAnimesResult = await client.query<IGetAnimesQuery>({
     query: GetAnimesDocument,
     variables: {
-      page: 1,
+      page: page ?? 1,
       perPage: 12,
     },
   });
