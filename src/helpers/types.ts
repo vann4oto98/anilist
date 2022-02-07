@@ -7,4 +7,5 @@ export interface IAnimeCard {
     coverImage: {
         large: string
     }
+    description: string
 }

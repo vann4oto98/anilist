@@ -1,6 +1,6 @@
 query GetAnimes($page: Int, $perPage: Int) {
   Page(page: $page, perPage: $perPage) {
-    media {
+    media(sort: POPULARITY_DESC) {
       id
       title {
         english
@@ -9,6 +9,7 @@ query GetAnimes($page: Int, $perPage: Int) {
       coverImage {
         large
       }
+      description
     }
   }
 }

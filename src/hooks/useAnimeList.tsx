@@ -11,7 +11,7 @@ const useAnimeList = ({ animes }: Props) => {
   const router = useRouter();
   const defaultPage = useMemo(() => {
     const page = Number(router.query?.page);
-    return page ?? 1;
+    return isNaN(page) ? 1 : page;
   }, []);
   const [getAnimes, { loading, data }] = useGetAnimesLazyQuery({
     variables: {

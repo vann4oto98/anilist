@@ -6,7 +6,7 @@ const Header = () => {
       <h1 className={styles.title}>
         <span>Ani</span>List
       </h1>
-      <p style={{ textAlign: "center" }}>All the anime in one place</p>
+      <p style={{ textAlign: "center" }}>Current most popular anime</p>
     </div>
   );
 };

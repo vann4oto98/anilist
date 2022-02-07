@@ -9,13 +9,13 @@ export type IGetAnimesQueryVariables = Types.Exact<{
 }>;
 
 
-export type IGetAnimesQuery = { __typename?: 'Query', Page?: { __typename?: 'Page', media?: Array<{ __typename?: 'Media', id: number, title?: { __typename?: 'MediaTitle', english?: string | null, romaji?: string | null } | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null } | null> | null } | null };
+export type IGetAnimesQuery = { __typename?: 'Query', Page?: { __typename?: 'Page', media?: Array<{ __typename?: 'Media', id: number, description?: string | null, title?: { __typename?: 'MediaTitle', english?: string | null, romaji?: string | null } | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null } | null> | null } | null };
 
 
 export const GetAnimesDocument = gql`
     query GetAnimes($page: Int, $perPage: Int) {
   Page(page: $page, perPage: $perPage) {
-    media {
+    media(sort: POPULARITY_DESC) {
       id
       title {
         english
@@ -24,6 +24,7 @@ export const GetAnimesDocument = gql`
       coverImage {
         large
       }
+      description
     }
   }
 }
