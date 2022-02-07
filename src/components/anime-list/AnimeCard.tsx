@@ -11,14 +11,21 @@ import Link from "next/link";
 import { IAnimeCard } from "../../helpers/types";
 //@ts-ignore
 import ReactHtmlParser from "react-html-parser";
+import { useRouter } from "next/router";
 type Props = {
   anime: IAnimeCard;
 };
 
 const AnimeCard = ({ anime }: Props) => {
   const { id, coverImage, title, description, meanScore } = anime;
+  const router = useRouter();
   return (
-    <Link href="/anime/[id]" as={`/anime/${id}`}>
+    <Link
+      href={{
+        pathname: `anime/${id}`,
+        query: { page: router.query?.page ?? 1 },
+      }}
+    >
       <Card sx={{ width: "460px", height: "320px" }}>
         <CardActionArea
           sx={{

@@ -21,7 +21,7 @@ const AnimeDetailPage = () => {
           <AnimeDetail anime={data} />
           <br />
           <div style={{ textAlign: "end" }}>
-            <Link href="/">
+            <Link href={{ pathname: "/", query: { page: router.query?.page } }}>
               <a style={{ color: "#0170F3", textDecoration: "underline" }}>
                 Go Back
               </a>
