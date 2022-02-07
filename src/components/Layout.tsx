@@ -1,4 +1,4 @@
-import styles from "../../styles/Layout.module.css";
+import { Box } from "@mui/material";
 import Meta from "./Meta";
 import Nav from "./Nav";
 
@@ -15,9 +15,7 @@ const Layout = ({ children }: Props) => {
         description={"A place for all anime fans"}
       />
       <Nav />
-      <div className={styles.container}>
-        <main className={styles.main}>{children}</main>
-      </div>
+      <Box sx={{ padding: "2rem" }}>{children}</Box>
     </>
   );
 };
