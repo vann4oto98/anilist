@@ -22,7 +22,7 @@ const Header = () => {
         variant="body1"
         component="p"
       >
-        Current most popular anime
+        Top User Rated Animes
       </Typography>
     </Box>
   );

@@ -1,5 +1,4 @@
 import { Grid, Pagination } from "@mui/material";
-import styles from "../../../styles/Anime.module.css";
 import { IAnimeCard } from "../../helpers/types";
 import useAnimeList from "../../hooks/useAnimeList";
 import AnimeCard from "./AnimeCard";

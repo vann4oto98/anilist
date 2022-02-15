@@ -1,0 +1,14 @@
+query MediaSearch($search: String) {
+  Media(search: $search) {
+    id
+    title {
+      english
+      romaji
+    }
+    coverImage {
+      large
+    }
+    description
+    meanScore
+  }
+}
